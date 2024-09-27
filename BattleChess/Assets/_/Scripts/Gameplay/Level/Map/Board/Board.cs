@@ -1,3 +1,4 @@
+using BattleChess.Entity;
 using BattleChess.Team;
 using System.Collections.Generic;
 using UnityEngine;

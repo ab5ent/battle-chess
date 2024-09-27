@@ -1,6 +1,7 @@
 using BattleChess.Team;
 using BattleChess.Managers;
 using UnityEngine;
+using BattleChess.Entity;
 
 namespace BattleChess.LevelStructure
 {

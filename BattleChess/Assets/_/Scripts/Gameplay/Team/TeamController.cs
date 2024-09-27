@@ -1,3 +1,4 @@
+using BattleChess.Entity;
 using BattleChess.LevelStructure;
 using System;
 using UnityEngine;
