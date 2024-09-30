@@ -1,4 +1,6 @@
+using BattleChess.Common;
 using BattleChess.LevelStructure;
+using System;
 using UnityEngine;
 
 namespace BattleChess.Managers
@@ -40,6 +42,11 @@ namespace BattleChess.Managers
         public Cell GetCell()
         {
             return cellGenerator.GetCell();
+        }
+
+        public void OnChangeLevelState(LevelState state)
+        {
+            dragObjectController.OnChangeLevelState(state);
         }
     }
 }

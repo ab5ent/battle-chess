@@ -27,6 +27,14 @@ namespace BattleChess.LevelStructure
 
             Ref.AITeamController.Initialize(this);
             Ref.UserTeamController.Initialize(this);
+
+            SetState(LevelState.Prepare);
+        }
+
+        private void SetState(LevelState newLevelState)
+        {
+            Variables.State = newLevelState;
+            manager.OnChangeLevelState(Variables.State);
         }
 
         private void Update()

@@ -35,6 +35,8 @@ namespace BattleChess.Entity
             {
                 components[i].Initialize();
             }
+
+            GetComponentInChildren<ChampionDragCollider>().SetChampion(this);
         }
 
         #region Utility

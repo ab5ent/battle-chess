@@ -1,8 +1,14 @@
-using UnityEngine;
+using BattleChess.Common;
 
 namespace BattleChess.Entity
 {
-    public class ChampionDragCollider : MonoBehaviour
+    public class ChampionDragCollider : DraggableObject
     {
+        private Champion champion;
+
+        public void SetChampion(Champion newChampion)
+        {
+            champion = newChampion;
+        }
     }
 }

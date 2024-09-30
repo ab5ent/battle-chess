@@ -66,6 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21760e60837b3f547a09397abbd3d648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Id>k__BackingField: 0
 --- !u!1001 &1093055191568200932
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -696,9 +697,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 00bcc74cbe0d9154b9fae7a3b5e99303, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2125128217019634244}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 00bcc74cbe0d9154b9fae7a3b5e99303, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8286959930666872653}
   m_SourcePrefab: {fileID: 100100000, guid: 00bcc74cbe0d9154b9fae7a3b5e99303, type: 3}
 --- !u!137 &81132002369256958 stripped
 SkinnedMeshRenderer:
@@ -854,19 +852,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e90c6fcad2160f419a59e7b59c61a98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8286959930666872653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 282079940728097205}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f9403977eb3e8244bad5a0fdd86dc84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Id>k__BackingField: 0
 --- !u!137 &338311924764561882 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 836159905513563454, guid: 00bcc74cbe0d9154b9fae7a3b5e99303, type: 3}
