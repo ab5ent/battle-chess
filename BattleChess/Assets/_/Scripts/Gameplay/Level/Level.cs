@@ -18,9 +18,6 @@ namespace BattleChess.LevelStructure
         [field: SerializeField]
         public LevelRuntimeVariables Variables { get; private set; }
 
-        [SerializeField]
-        private DragObjectController dragObjectController;
-
         public void Initialize(LevelManager levelManager)
         {
             manager = levelManager;

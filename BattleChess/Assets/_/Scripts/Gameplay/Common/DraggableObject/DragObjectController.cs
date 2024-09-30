@@ -33,13 +33,13 @@ namespace BattleChess.LevelStructure
         {
             for (int i = 0; i < draggableObjectInfo.Length; i++)
             {
-                drayLayerMask &= draggableObjectInfo[i].DraggableLayerMask;
+                drayLayerMask |= draggableObjectInfo[i].DraggableLayerMask;
             }
         }
 
         private void Update()
         {
-            if (!manager.CurrentLevel)
+            if (!manager.CurrentLevel) 
             {
                 return;
             }
@@ -70,7 +70,7 @@ namespace BattleChess.LevelStructure
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-                if (!Physics.Raycast(ray, out mouseRaycastHit, 10, drayLayerMask))
+                if (!Physics.Raycast(ray, out mouseRaycastHit, 1000, drayLayerMask))
                 {
                     return;
                 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6556054258804668901}
   - component: {fileID: 810100082014943331}
   - component: {fileID: 6102891263354835840}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: DragCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -866,6 +866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f9403977eb3e8244bad5a0fdd86dc84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Id>k__BackingField: 0
 --- !u!137 &338311924764561882 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 836159905513563454, guid: 00bcc74cbe0d9154b9fae7a3b5e99303, type: 3}
