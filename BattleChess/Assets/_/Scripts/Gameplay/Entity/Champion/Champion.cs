@@ -1,5 +1,4 @@
 using BattleChess.Team;
-using InfinityCode.UltimateEditorEnhancer.EditorMenus.PopupWindows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,11 +39,6 @@ namespace BattleChess.Entity
 
         #region Utility
 
-        public void SetTeamController(TeamController teamController)
-        {
-            controller = teamController;
-        }
-
         public void SetParent(Transform holder)
         {
             transform.SetParent(holder);
@@ -66,17 +60,18 @@ namespace BattleChess.Entity
 
         #endregion
 
-        private int i = 0;
-
-        private void Update()
+        public void SetTeamController(TeamController teamController)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                List<ChampionId> listChampionIds = Enum.GetValues(typeof(ChampionId)).Cast<ChampionId>().ToList();
-                GetChampionComponent<ChampionIdentity>().SetChampionIdentity(listChampionIds[i]);
-                i += 1;
-            }
-
+            controller = teamController;
         }
+
+        #region Methods
+
+        public void SetIdentity(ChampionId id)
+        {
+            GetChampionComponent<ChampionIdentity>().SetChampionIdentity(id);
+        }
+
+        #endregion
     }
 }

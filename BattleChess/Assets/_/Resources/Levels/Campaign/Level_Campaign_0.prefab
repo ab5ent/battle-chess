@@ -59,9 +59,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cells: []
-  layerMasks:
-    serializedVersion: 2
-    m_Bits: 1
 --- !u!1 &2408046843393834660
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,6 +174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9106286158945567902}
   - component: {fileID: 4529784449742135282}
+  - component: {fileID: 8699433939114921728}
   m_Layer: 0
   m_Name: Level_Campaign_0
   m_TagString: Untagged
@@ -235,6 +233,18 @@ MonoBehaviour:
         <EndRowIndex>k__BackingField: 0
         <StartColumnIndex>k__BackingField: 0
         <EndColumnIndex>k__BackingField: 0
+--- !u!114 &8699433939114921728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6726568670666111373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 012ffe66e4a710346886ec83fc0cd9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1195729908345171099
 PrefabInstance:
   m_ObjectHideFlags: 0

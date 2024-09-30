@@ -19,9 +19,9 @@ namespace BattleChess.ObjectPooling
             pooledObjectControl.Pool.Release(this);
         }
 
-        public void SetActive(bool value)
+        public void Deactivate()
         {
-            gameObject.SetActive(value);
+            gameObject.SetActive(false);
         }
 
         public void Destroy()

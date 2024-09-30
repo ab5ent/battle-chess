@@ -122,6 +122,75 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &72947683
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 282079940728097205, guid: 47362a98fabe8d547af566be154b2a6e, type: 3}
+      propertyPath: m_Name
+      value: Champion
+      objectReference: {fileID: 0}
+    - target: {fileID: 622049367857877775, guid: 47362a98fabe8d547af566be154b2a6e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 622049367857877775, guid: 47362a98fabe8d547af566be154b2a6e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 622049367857877775, guid: 47362a98fabe8d547af566be154b2a6e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 622049367857877775, guid: 47362a98fabe8d547af566be154b2a6e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 622049367857877775, guid: 47362a98fabe8d547af566be154b2a6e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 622049367857877775, guid: 47362a98fabe8d547af566be154b2a6e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 622049367857877775, guid: 47362a98fabe8d547af566be154b2a6e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 622049367857877775, guid: 47362a98fabe8d547af566be154b2a6e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 622049367857877775, guid: 47362a98fabe8d547af566be154b2a6e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 622049367857877775, guid: 47362a98fabe8d547af566be154b2a6e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3178419868263438422, guid: 47362a98fabe8d547af566be154b2a6e, type: 3}
+      propertyPath: <Id>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8931865748167989465, guid: 47362a98fabe8d547af566be154b2a6e, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8931865748167989465, guid: 47362a98fabe8d547af566be154b2a6e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f99629b899c46c443ac387a8ee1085ad, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 47362a98fabe8d547af566be154b2a6e, type: 3}
 --- !u!1 &139717040
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,11 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a46b737512f948c0a1e2352a94d18709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bookmarks:
-  - title: LevelManager
-    type: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-    target: {fileID: 999899068}
+  bookmarks: []
   hierarchyBackgrounds:
   - gameObject: {fileID: 537046151}
     color: {r: 0, g: 1, b: 1, a: 1}
@@ -549,7 +614,7 @@ MonoBehaviour:
   <CurrentLevel>k__BackingField: {fileID: 0}
   boardData: {fileID: 11400000, guid: ac5fe4fbbb35da146ae2451075618dda, type: 2}
   cellGenerator: {fileID: 999899071}
-  dragObjectController: {fileID: 999899072}
+  inputController: {fileID: 999899072}
 --- !u!114 &999899071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -572,14 +637,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 999899068}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 012ffe66e4a710346886ec83fc0cd9b8, type: 3}
+  m_Script: {fileID: 11500000, guid: bcf537b1ed6854d45a215d2a53ec1ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  draggableObjectInfo:
-  - <Id>k__BackingField: 0
-    <DraggableLayerMask>k__BackingField:
-      serializedVersion: 2
-      m_Bits: 8
+  layerMasks:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &1285537150
 GameObject:
   m_ObjectHideFlags: 0
@@ -677,3 +740,4 @@ SceneRoots:
   - {fileID: 705507995}
   - {fileID: 537046152}
   - {fileID: 500189813}
+  - {fileID: 72947683}

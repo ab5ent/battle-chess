@@ -19,6 +19,7 @@ namespace BattleChess.LevelStructure
 
         protected override void OnDrawGizmosSelected()
         {
+            base.OnDrawGizmosSelected();
             //Gizmos.color = Color.green;
 
             //base.OnDrawGizmosSelected();

@@ -44,7 +44,7 @@ namespace BattleChess.ObjectPooling
 
         private void OnReturnedToPool(PooledObject pooledObject)
         {
-            pooledObject.SetActive(false);
+            pooledObject.Deactivate();
         }
 
         private void OnDestroyPooledObject(PooledObject pooledObject)

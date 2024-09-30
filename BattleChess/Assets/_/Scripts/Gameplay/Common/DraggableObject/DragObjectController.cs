@@ -1,13 +1,17 @@
+using BattleChess.Common;
 using BattleChess.Managers;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
 namespace BattleChess.LevelStructure
 {
-    public class InputController : MonoBehaviour
+    public class DragObjectController : MonoBehaviour
     {
+        public LayerMask drayLayerMask;
+
         [SerializeField]
-        private LayerMask layerMasks;
+        private DraggableObjectInfo[] draggableObjectInfo;
 
         private LevelManager manager;
 
@@ -22,6 +26,15 @@ namespace BattleChess.LevelStructure
         public void SetManager(LevelManager levelManager)
         {
             manager = levelManager;
+            SetLayerMask();
+        }
+
+        private void SetLayerMask()
+        {
+            for (int i = 0; i < draggableObjectInfo.Length; i++)
+            {
+                drayLayerMask &= draggableObjectInfo[i].DraggableLayerMask;
+            }
         }
 
         private void Update()
@@ -57,7 +70,7 @@ namespace BattleChess.LevelStructure
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-                if (!Physics.Raycast(ray, out mouseRaycastHit, 10, layerMasks))
+                if (!Physics.Raycast(ray, out mouseRaycastHit, 10, drayLayerMask))
                 {
                     return;
                 }

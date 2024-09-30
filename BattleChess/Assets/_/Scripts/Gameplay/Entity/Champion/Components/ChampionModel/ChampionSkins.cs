@@ -8,11 +8,11 @@ namespace BattleChess.Entity
 {
     public class ChampionSkins : ChampionComponent
     {
-        [SerializeField]
-        private ChampionSkinInfo[] info;
-
         [field: SerializeField]
         public Material OriginalMaterial { get; protected set; }
+
+        [SerializeField]
+        private ChampionSkinInfo[] info;
 
         public ChampionSkinInfo GetChampionSkinInfo(ChampionId id)
         {

@@ -88,7 +88,7 @@ namespace BattleChess.LevelStructure
                 {
                     cells[i].SetChampion(champion);
                     champion.SetParent(cells[i].transform);
-                    champion.SetLocalPositionAndRotation(Vector3.up, Quaternion.identity);
+                    champion.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
                 }
             }
         }

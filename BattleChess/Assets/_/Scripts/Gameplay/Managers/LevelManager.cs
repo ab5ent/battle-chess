@@ -15,13 +15,13 @@ namespace BattleChess.Managers
         private CellGenerator cellGenerator;
 
         [SerializeField]
-        private InputController inputController;
+        private DragObjectController dragObjectController;
 
         public override void Initialize(GameManager gameManager)
         {
             base.Initialize(gameManager);
             cellGenerator.SetManager(this);
-            inputController.SetManager(this);
+            dragObjectController.SetManager(this);
         }
 
         public void LoadLevel(LevelType levelType, int levelId)

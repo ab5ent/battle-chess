@@ -18,6 +18,9 @@ namespace BattleChess.LevelStructure
         [field: SerializeField]
         public LevelRuntimeVariables Variables { get; private set; }
 
+        [SerializeField]
+        private DragObjectController dragObjectController;
+
         public void Initialize(LevelManager levelManager)
         {
             manager = levelManager;
@@ -47,7 +50,8 @@ namespace BattleChess.LevelStructure
 
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                var champ = GameManager.Instance.PoolManager.GetPooledObject<Champion>(ObjectPooling.PooledObjectId.Test);
+                var champ = GameManager.Instance.PoolManager.GetPooledObject<Champion>(ObjectPooling.PooledObjectId.Champion);
+                champ.SetIdentity(ChampionId.HumanBard);
                 Ref.UserTeamController.AddChampion(champ);
             }
         }
