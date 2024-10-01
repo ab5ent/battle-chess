@@ -1,3 +1,4 @@
+using BattleChess.LevelStructure;
 using BattleChess.Team;
 using System;
 using System.Collections.Generic;
@@ -51,6 +52,11 @@ namespace BattleChess.Entity
             transform.SetLocalPositionAndRotation(position, rotation);
         }
 
+        public void SetPositionAndRotation(Vector3 position, Quaternion rotation)
+        {
+            transform.SetPositionAndRotation(position, rotation);
+        }
+
         public T GetChampionComponent<T>() where T : ChampionComponent
         {
             if (componentDictionary.TryGetValue(typeof(T), out ChampionComponent component))
@@ -72,6 +78,11 @@ namespace BattleChess.Entity
         public void SetIdentity(ChampionId id)
         {
             GetChampionComponent<ChampionIdentity>().SetChampionIdentity(id);
+        }
+
+        public void SetBoard(Board board)
+        {
+            GetChampionComponent<ChampionBoardLocation>().SetBoard(board);
         }
 
         #endregion

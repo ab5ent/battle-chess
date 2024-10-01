@@ -22,15 +22,12 @@ namespace BattleChess.LevelStructure
                 return deactivatedCell;
             }
 
-            Cell cell = new GameObject("Cell").AddComponent<Cell>();
-            cell.transform.SetParent(transform);
-            cell.Initialize(this);
+            Cell cell = new Cell(this);
             return cell;
         }
 
         public void Release(Cell cell)
         {
-            cell.transform.SetParent(transform);
             freeCells.Add(cell);
         }
 

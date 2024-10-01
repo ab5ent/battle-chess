@@ -1,9 +1,11 @@
 using BattleChess.Entity;
+using System;
 using UnityEngine;
 
 namespace BattleChess.LevelStructure
 {
-    public class Cell : MonoBehaviour
+    [Serializable]
+    public class Cell
     {
         private CellGenerator generator;
 
@@ -18,28 +20,12 @@ namespace BattleChess.LevelStructure
         [field: SerializeField]
         public Champion CurrentChampion { get; private set; }
 
-        public void SetActive(bool value)
-        {
-            gameObject.SetActive(value);
-        }
-
-        public void SetPositionAndRotation(Vector3 position, Quaternion quaternion)
-        {
-            transform.SetPositionAndRotation(position, quaternion);
-        }
-
-        public void SetParent(Transform holder)
-        {
-            transform.SetParent(holder);
-        }
-
-        public void Initialize(CellGenerator cellGenerator)
+        public Cell(CellGenerator cellGenerator)
         {
             generator = cellGenerator;
             isInitialized = false;
             Row = int.MinValue;
             Column = int.MinValue;
-            SetActive(false);
         }
 
         public void SetChampion(Champion newChampion)
@@ -58,7 +44,6 @@ namespace BattleChess.LevelStructure
             Row = row;
             Column = column;
             ClearChampion();
-            SetActive(true);
         }
 
         public void Deactivate()
@@ -67,8 +52,6 @@ namespace BattleChess.LevelStructure
             Row = int.MinValue;
             Column = int.MinValue;
             ClearChampion();
-            SetActive(false);
-
             generator.Release(this);
         }
     }

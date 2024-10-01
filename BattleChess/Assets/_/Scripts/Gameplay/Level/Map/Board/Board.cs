@@ -2,6 +2,7 @@ using BattleChess.Entity;
 using BattleChess.Team;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace BattleChess.LevelStructure
 {
@@ -35,8 +36,6 @@ namespace BattleChess.LevelStructure
                 for (int columnIndex = structure.StartColumnIndex; columnIndex <= structure.EndColumnIndex; columnIndex++)
                 {
                     Cell cell = controller.CurrentLevel.GetCell();
-                    cell.SetPositionAndRotation(unityGrid.CellToWorld(new Vector3Int(rowIndex, 0, columnIndex)), Quaternion.identity);
-                    cell.SetParent(transform);
                     cell.Activate(rowIndex, columnIndex);
                     cells.Add(cell);
                 }
@@ -60,11 +59,13 @@ namespace BattleChess.LevelStructure
             if (!unityGrid || structure == null)
                 return;
 
+            Gizmos.color = Color.red;
+
             for (int rowIndex = structure.StartRowIndex; rowIndex <= structure.EndRowIndex; rowIndex++)
             {
                 for (int columnIndex = structure.StartColumnIndex; columnIndex <= structure.EndColumnIndex; columnIndex++)
                 {
-                    Vector3 position = unityGrid.CellToWorld(new Vector3Int(columnIndex, 0, rowIndex));
+                    Vector3 position = unityGrid.CellToWorld(new Vector3Int(rowIndex, 0, columnIndex));
                     Gizmos.DrawWireCube(position, new Vector3(1, 0.05f, 1));
                 }
             }
@@ -82,15 +83,36 @@ namespace BattleChess.LevelStructure
 
         public virtual void AddChampion(Champion champion, int rowIndex, int columnIndex)
         {
+            champion.SetBoard(this);
+
             for (int i = 0; i < cells.Count; i++)
             {
                 if (cells[i].Row == rowIndex && cells[i].Column == columnIndex)
                 {
                     cells[i].SetChampion(champion);
-                    champion.SetParent(cells[i].transform);
-                    champion.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+                    Vector3 position = unityGrid.CellToWorld(new Vector3Int(rowIndex, 0, columnIndex));
+                    champion.SetPositionAndRotation(position, Quaternion.identity);
                 }
             }
+        }
+
+        public Vector3 ConvertToGridPosition(Vector3 position)
+        {
+            Vector3Int cellPosition = unityGrid.WorldToCell(position);
+            cellPosition.x = Mathf.Clamp(cellPosition.x, structure.StartRowIndex, structure.EndRowIndex);
+            cellPosition.y = 0;
+            cellPosition.z = Mathf.Clamp(cellPosition.z, structure.StartColumnIndex, structure.EndColumnIndex);
+            return unityGrid.CellToWorld(cellPosition);
+        }
+
+        public Vector3Int Get(Vector3 position)
+        {
+            Vector3Int cellPosition = unityGrid.WorldToCell(position);
+            cellPosition.x = Mathf.Clamp(cellPosition.x, structure.StartRowIndex, structure.EndRowIndex);
+            cellPosition.y = 0;
+            cellPosition.z = Mathf.Clamp(cellPosition.z, structure.StartColumnIndex, structure.EndColumnIndex);
+
+            return cellPosition;
         }
     }
 }

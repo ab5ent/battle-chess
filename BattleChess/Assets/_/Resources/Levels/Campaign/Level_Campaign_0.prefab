@@ -104,7 +104,7 @@ Grid:
   m_CellSize: {x: 1, y: 1, z: 1}
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
-  m_CellSwizzle: 0
+  m_CellSwizzle: 5
 --- !u!1 &4180256537262495631
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,7 +232,6 @@ MonoBehaviour:
         <EndRowIndex>k__BackingField: 0
         <StartColumnIndex>k__BackingField: 0
         <EndColumnIndex>k__BackingField: 0
-  dragObjectController: {fileID: 0}
 --- !u!1001 &1195729908345171099
 PrefabInstance:
   m_ObjectHideFlags: 0

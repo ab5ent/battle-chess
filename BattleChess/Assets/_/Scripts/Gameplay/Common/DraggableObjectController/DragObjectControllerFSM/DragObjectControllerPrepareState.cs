@@ -11,7 +11,7 @@ namespace BattleChess.Common
         private LayerMask raycastLayerMask;
 
         [SerializeField]
-        private DraggableObject currentDragableObject;
+        private DraggableObject taggedDragableObject;
 
         public override void Initialize(DragObjectController dragObjectController)
         {
@@ -21,7 +21,7 @@ namespace BattleChess.Common
 
         public override void OnEnter()
         {
-            
+
         }
 
         public override void OnExit()
@@ -30,36 +30,64 @@ namespace BattleChess.Common
 
         public override void OnUpdate()
         {
+            ProcessTryToTagDraggableObject();
+            ProcessObserveTaggedDraggableObject();
+        }
+
+        private void ProcessTryToTagDraggableObject()
+        {
+            if (taggedDragableObject != null)
+            {
+                return;
+            }
+
             if (Input.GetMouseButton(0))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
                 if (!Physics.Raycast(ray, out mouseRaycastHit, 1000, raycastLayerMask))
                 {
-                    ResetCurrentDraggableObject();
+                    ResetTaggedDraggableObject();
                     return;
                 }
 
                 var draggableObj = mouseRaycastHit.collider.GetComponent<DraggableObject>();
-                SetCurrentDraggableObject(draggableObj);
+                SetTaggedDraggableObject(draggableObj);
             }
         }
 
-        private void SetCurrentDraggableObject(DraggableObject draggableObject)
+        private void ProcessObserveTaggedDraggableObject()
         {
-            if (currentDragableObject == draggableObject)
+            if (taggedDragableObject == null)
             {
                 return;
             }
 
-            currentDragableObject?.SetSelected(false);
-            currentDragableObject = draggableObject;
-            currentDragableObject.SetSelected(true);
+            if (!taggedDragableObject.IsBeingDragged)
+            {
+                SetTaggedDraggableObject(null);
+            }
         }
 
-        private void ResetCurrentDraggableObject()
+        #region Utility
+
+        private void SetTaggedDraggableObject(DraggableObject draggableObject)
         {
-            currentDragableObject = null;
+            if (taggedDragableObject == draggableObject)
+            {
+                return;
+            }
+
+            taggedDragableObject?.SetSelected(false);
+            taggedDragableObject = draggableObject;
+            taggedDragableObject?.SetSelected(true);
         }
+
+        private void ResetTaggedDraggableObject()
+        {
+            taggedDragableObject = null;
+        }
+
+        #endregion
     }
 }
