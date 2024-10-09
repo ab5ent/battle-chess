@@ -56,7 +56,7 @@ namespace BattleChess.LevelStructure
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 var champ = GameManager.Instance.PoolManager.GetPooledObject<Champion>(ObjectPooling.PooledObjectId.Champion);
-                champ.SetIdentity(ChampionId.HumanBard);
+                champ.SetIdentity(ChampionIdentity.GetRandomChampionId());
                 Ref.UserTeamController.AddChampion(champ);
             }
         }

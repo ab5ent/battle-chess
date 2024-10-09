@@ -7,9 +7,12 @@ namespace BattleChess.Entity
     {
         private Champion champion;
 
+        private ChampionBoardLocation boardLocation;
+
         public void SetChampion(Champion newChampion)
         {
             champion = newChampion;
+            boardLocation = champion.GetChampionComponent<ChampionBoardLocation>();
         }
 
         private Vector3 GetChampionPositionToScreenPoint()
@@ -28,7 +31,7 @@ namespace BattleChess.Entity
             var newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
             if ((newPosition - lastPosition).magnitude >= Mathf.Epsilon)
             {
-                champion.GetChampionComponent<ChampionBoardLocation>().SetToBoardCellCenter(newPosition);
+                boardLocation.SetTemporaryOnBoard(newPosition);
             }
             lastPosition = newPosition;
         }
@@ -40,7 +43,7 @@ namespace BattleChess.Entity
 
         protected override void MouseUpOnObject()
         {
-            champion.GetChampionComponent<ChampionBoardLocation>().PlaceToBoardCellCenter(lastPosition);
+            boardLocation.SwapOnBoard();
         }
     }
 }

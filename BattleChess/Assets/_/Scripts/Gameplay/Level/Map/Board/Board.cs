@@ -1,8 +1,10 @@
 using BattleChess.Entity;
 using BattleChess.Team;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEditor.FilePathAttribute;
 
 namespace BattleChess.LevelStructure
 {
@@ -36,7 +38,9 @@ namespace BattleChess.LevelStructure
                 for (int columnIndex = structure.StartColumnIndex; columnIndex <= structure.EndColumnIndex; columnIndex++)
                 {
                     Cell cell = controller.CurrentLevel.GetCell();
+                    cell.SetPositionAndRotation(unityGrid.CellToWorld(new Vector3Int(rowIndex, 0, columnIndex)), cell.transform.rotation);
                     cell.Activate(rowIndex, columnIndex);
+
                     cells.Add(cell);
                 }
             }
@@ -54,7 +58,7 @@ namespace BattleChess.LevelStructure
 
         #region MonoBehaviour
 
-        protected virtual void OnDrawGizmosSelected()
+        protected virtual void OnDrawGizmos()
         {
             if (!unityGrid || structure == null)
                 return;
@@ -81,38 +85,61 @@ namespace BattleChess.LevelStructure
             }
         }
 
-        public virtual void AddChampion(Champion champion, int rowIndex, int columnIndex)
+        public virtual void AddChampion(Champion champion, Vector2Int location)
         {
             champion.SetBoard(this);
 
             for (int i = 0; i < cells.Count; i++)
             {
-                if (cells[i].Row == rowIndex && cells[i].Column == columnIndex)
+                if (cells[i].Position.x == location.x && cells[i].Position.y == location.y)
                 {
                     cells[i].SetChampion(champion);
-                    Vector3 position = unityGrid.CellToWorld(new Vector3Int(rowIndex, 0, columnIndex));
+                    Vector3 position = unityGrid.CellToWorld(new Vector3Int(cells[i].Position.x, 0, cells[i].Position.y));
                     champion.SetPositionAndRotation(position, Quaternion.identity);
                 }
             }
         }
 
-        public Vector3 ConvertToGridPosition(Vector3 position)
+        public virtual void AddChampion(Champion champion)
         {
-            Vector3Int cellPosition = unityGrid.WorldToCell(position);
-            cellPosition.x = Mathf.Clamp(cellPosition.x, structure.StartRowIndex, structure.EndRowIndex);
-            cellPosition.y = 0;
-            cellPosition.z = Mathf.Clamp(cellPosition.z, structure.StartColumnIndex, structure.EndColumnIndex);
-            return unityGrid.CellToWorld(cellPosition);
+            champion.SetBoard(this);
+
+            for (int i = 0; i < cells.Count; i++)
+            {
+                if (cells[i].CurrentChampion == null)
+                {
+                    cells[i].SetChampion(champion);
+                    champion.GetChampionComponent<ChampionBoardLocation>().SetCurrentCell(cells[i]);
+                    champion.GetChampionComponent<ChampionBoardLocation>().ReturnToCurrentCell();
+                    return;
+                }
+            }
         }
 
-        public Vector3Int Get(Vector3 position)
+        public Cell GetCell(Vector3 position)
         {
             Vector3Int cellPosition = unityGrid.WorldToCell(position);
             cellPosition.x = Mathf.Clamp(cellPosition.x, structure.StartRowIndex, structure.EndRowIndex);
-            cellPosition.y = 0;
             cellPosition.z = Mathf.Clamp(cellPosition.z, structure.StartColumnIndex, structure.EndColumnIndex);
+            return GetCell(cellPosition.x, cellPosition.z);
+        }
 
-            return cellPosition;
+        public Cell GetCell(int rowIndex, int columnIndex)
+        {
+            for (int i = 0; i < cells.Count; i++)
+            {
+                if (cells[i].Position.x == rowIndex && cells[i].Position.y == columnIndex)
+                {
+                    return cells[i];
+                }
+            }
+
+            return null;
+        }
+
+        public Vector3 GetWorldPosition(Vector3Int vector3Int)
+        {
+            return unityGrid.CellToWorld(vector3Int);
         }
     }
 }

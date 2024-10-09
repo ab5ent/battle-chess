@@ -420,7 +420,7 @@ GameObject:
   - component: {fileID: 957839004}
   - component: {fileID: 957839006}
   m_Layer: 0
-  m_Name: Cell
+  m_Name: CellPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -491,7 +491,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 999899069}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &957839006
 MonoBehaviour:
@@ -505,7 +505,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bb39fd13d588db4eaee1fc1314d0b29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  preview: {fileID: 957839004}
   <Row>k__BackingField: 0
   <Column>k__BackingField: 0
   <CurrentChampion>k__BackingField: {fileID: 0}
@@ -632,8 +631,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 957839005}
+  m_Children: []
   m_Father: {fileID: 537046152}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &999899070
@@ -665,7 +663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   freeCells: []
-  cellPrefab: {fileID: 957839006}
+  cellPrefab: {fileID: 0}
 --- !u!114 &999899072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -781,3 +779,4 @@ SceneRoots:
   - {fileID: 705507995}
   - {fileID: 537046152}
   - {fileID: 500189813}
+  - {fileID: 957839005}

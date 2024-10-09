@@ -1,8 +1,6 @@
 using BattleChess.LevelStructure;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace BattleChess.Entity
 {
@@ -10,22 +8,78 @@ namespace BattleChess.Entity
     {
         private Board board;
 
-        public Vector3Int v;
+        private Cell currentCell, selectedCell;
 
         public void SetBoard(Board newBoard)
         {
             board = newBoard;
         }
 
-        public void SetToBoardCellCenter(Vector3 position)
+        public void SetTemporaryOnBoard(Vector3 position)
         {
-            v = board.Get(position);
-            champion.SetLocalPositionAndRotation(board.ConvertToGridPosition(position) + Vector3.up * 0.5f, Quaternion.identity);
+            Cell cell = board.GetCell(position);
+            if (cell)
+            {
+                SwapSelectedCell(cell);
+                SetPosition(cell.Position, Vector3.up * 1.5f);
+            }
         }
 
-        public void PlaceToBoardCellCenter(Vector3 position)
+        public void ReturnToCurrentCell()
         {
-            champion.SetLocalPositionAndRotation(board.ConvertToGridPosition(position), Quaternion.identity);
+            SetPosition(currentCell.Position, Vector3.zero);
+            SetSelectedCell(null);
+        }
+
+        public void SwapOnBoard()
+        {
+            if (!selectedCell)
+            {
+                ReturnToCurrentCell();
+                return;
+            }
+
+            Champion selectedCellChampion = selectedCell.CurrentChampion;
+            Cell _currentCell = currentCell;
+
+            selectedCell.SetChampion(champion);
+            SetCurrentCell(selectedCell);
+            SetPosition(selectedCell.Position, Vector3.zero);
+
+            _currentCell.SetChampion(selectedCellChampion);
+            selectedCellChampion?.GetChampionComponent<ChampionBoardLocation>().SetCurrentCell(_currentCell);
+            selectedCellChampion?.GetChampionComponent<ChampionBoardLocation>().SetPosition(_currentCell.Position, Vector3.zero);
+
+            SetSelectedCell(null);
+        }
+
+        public void SwapSelectedCell(Cell cell)
+        {
+            if (cell == null)
+            {
+                return;
+            }
+
+            Cell oldCell = selectedCell;
+            SetSelectedCell(cell);
+            oldCell?.RefreshPreview();
+            selectedCell?.OnDragChampionOnPreview(champion);
+        }
+
+        public void SetCurrentCell(Cell cell)
+        {
+            currentCell = cell;
+        }
+
+        public void SetSelectedCell(Cell cell)
+        {
+            selectedCell = cell;
+        }
+
+        public void SetPosition(Vector2Int intPosition, Vector3 offset)
+        {
+            Vector3 onBoardPosition = board.GetWorldPosition(new Vector3Int(intPosition.x, 0, intPosition.y));
+            champion.SetLocalPositionAndRotation(onBoardPosition + offset, Quaternion.identity);
         }
     }
 }

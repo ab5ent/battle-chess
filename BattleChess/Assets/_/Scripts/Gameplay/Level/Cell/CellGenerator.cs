@@ -12,6 +12,9 @@ namespace BattleChess.LevelStructure
         [SerializeField]
         private List<Cell> freeCells;
 
+        [SerializeField]
+        private Cell cellPrefab;
+
         public Cell GetCell()
         {
             if (freeCells.Count > 0)
@@ -22,7 +25,8 @@ namespace BattleChess.LevelStructure
                 return deactivatedCell;
             }
 
-            Cell cell = new Cell(this);
+            Cell cell = Instantiate(cellPrefab, transform);
+            cell.Initialize(this);
             return cell;
         }
 

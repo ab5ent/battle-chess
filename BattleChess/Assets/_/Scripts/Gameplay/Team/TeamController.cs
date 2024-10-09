@@ -33,7 +33,7 @@ namespace BattleChess.Team
 
         public void AddChampion(Champion champ)
         {
-            board.AddChampion(champ, -4, -4);
+            board.AddChampion(champ);
         }
     }
 }

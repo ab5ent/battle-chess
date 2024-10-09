@@ -9,8 +9,6 @@ namespace BattleChess.Entity
 {
     public class Champion : MonoBehaviour
     {
-        private TeamController controller;
-
         private Dictionary<Type, ChampionComponent> componentDictionary;
 
         private void Awake()

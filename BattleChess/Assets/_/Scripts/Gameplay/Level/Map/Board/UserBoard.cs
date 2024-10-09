@@ -16,19 +16,5 @@ namespace BattleChess.LevelStructure
             SetStructure(controller.CurrentLevel.Variables.InformationOfBoard.UserBoardStructure);
             SetCells();
         }
-
-        protected override void OnDrawGizmosSelected()
-        {
-            base.OnDrawGizmosSelected();
-            //Gizmos.color = Color.green;
-
-            //base.OnDrawGizmosSelected();
-
-            //if (draw)
-            //{
-            //    Gizmos.color = Color.cyan;
-            //    Gizmos.DrawWireCube(selectedGridPosition + (Vector3.up / 2), Vector3.one);
-            //}
-        }
     }
 }
