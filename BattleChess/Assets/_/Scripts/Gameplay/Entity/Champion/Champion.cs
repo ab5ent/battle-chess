@@ -1,8 +1,6 @@
 using BattleChess.LevelStructure;
-using BattleChess.Team;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace BattleChess.Entity
@@ -66,11 +64,6 @@ namespace BattleChess.Entity
 
         #endregion
 
-        public void SetTeamController(TeamController teamController)
-        {
-            controller = teamController;
-        }
-
         #region Methods
 
         public void SetIdentity(ChampionId id)
@@ -81,6 +74,11 @@ namespace BattleChess.Entity
         public void SetBoard(Board board)
         {
             GetChampionComponent<ChampionBoardLocation>().SetBoard(board);
+        }
+
+        public void SetTeam(TeamId teamId)
+        {
+            GetChampionComponent<ChampionTeam>().AssignToTeam(teamId);
         }
 
         #endregion

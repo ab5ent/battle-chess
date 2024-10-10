@@ -4,11 +4,11 @@ namespace BattleChess.LevelStructure
 {
     public class AIBoard : Board
     {
-        public override void Initialize(TeamController teamController)
+       /* public override void Initialize(TeamController teamController)
         {
             base.Initialize(teamController);
             SetStructure(teamController.CurrentLevel.Variables.InformationOfBoard.AIBoardStructure);
-        }
+        }*/
 
         public override void ProcessPrepareState()
         {

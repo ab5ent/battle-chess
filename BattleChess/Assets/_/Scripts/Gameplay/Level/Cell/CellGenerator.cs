@@ -10,6 +10,9 @@ namespace BattleChess.LevelStructure
         private LevelManager manager;
 
         [SerializeField]
+        private Transform holder;
+
+        [SerializeField]
         private List<Cell> freeCells;
 
         [SerializeField]
@@ -25,7 +28,7 @@ namespace BattleChess.LevelStructure
                 return deactivatedCell;
             }
 
-            Cell cell = Instantiate(cellPrefab, transform);
+            Cell cell = Instantiate(cellPrefab, holder);
             cell.Initialize(this);
             return cell;
         }

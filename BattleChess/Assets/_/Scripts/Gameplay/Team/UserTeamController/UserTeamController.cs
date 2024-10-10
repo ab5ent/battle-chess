@@ -5,7 +5,6 @@ namespace BattleChess.Team
         public override void ProcessPrepareState()
         {
             base.ProcessPrepareState();
-            board.ProcessPrepareState();
         }
     }
 }

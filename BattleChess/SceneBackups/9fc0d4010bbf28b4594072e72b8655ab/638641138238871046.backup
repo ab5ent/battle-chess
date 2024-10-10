@@ -417,7 +417,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 717853997}
-  - component: {fileID: 717853998}
   m_Layer: 0
   m_Name: TeamManager
   m_TagString: Untagged
@@ -437,68 +436,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 745084845}
-  - {fileID: 2069138396}
+  m_Children: []
   m_Father: {fileID: 999899069}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &717853998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 717853996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20d7b6d787573d042b5430805db952bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &745084844
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 745084845}
-  - component: {fileID: 745084846}
-  m_Layer: 0
-  m_Name: UserTeamController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &745084845
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 745084844}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 717853997}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &745084846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 745084844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0506ae43233f7d140955ace77f3d6a53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Id>k__BackingField: 0
 --- !u!1 &925006763
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,7 +448,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 925006764}
-  - component: {fileID: 925006765}
   m_Layer: 0
   m_Name: Cells
   m_TagString: Untagged
@@ -532,21 +471,6 @@ Transform:
   - {fileID: 957839005}
   m_Father: {fileID: 999899069}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &925006765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 925006763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fafde6f8423869e46b6a15d0ddef971a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  holder: {fileID: 925006764}
-  freeCells: []
-  cellPrefab: {fileID: 957839006}
 --- !u!1 &957839003
 GameObject:
   m_ObjectHideFlags: 0
@@ -748,6 +672,7 @@ GameObject:
   m_Component:
   - component: {fileID: 999899069}
   - component: {fileID: 999899070}
+  - component: {fileID: 999899071}
   - component: {fileID: 999899072}
   m_Layer: 0
   m_Name: LevelManager
@@ -787,8 +712,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CurrentLevel>k__BackingField: {fileID: 0}
   boardData: {fileID: 11400000, guid: ac5fe4fbbb35da146ae2451075618dda, type: 2}
-  cellGenerator: {fileID: 925006765}
+  cellGenerator: {fileID: 999899071}
   dragObjectController: {fileID: 999899072}
+--- !u!114 &999899071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999899068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fafde6f8423869e46b6a15d0ddef971a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holder: {fileID: 925006764}
+  freeCells: []
+  cellPrefab: {fileID: 957839006}
 --- !u!114 &999899072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -896,51 +836,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dafcea588a854c4c9929ffc7fb7cbad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &2069138395
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2069138396}
-  - component: {fileID: 2069138397}
-  m_Layer: 0
-  m_Name: AITeamController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2069138396
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2069138395}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 717853997}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2069138397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2069138395}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3305437dc973cbc458f9b88dc12f08a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Id>k__BackingField: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

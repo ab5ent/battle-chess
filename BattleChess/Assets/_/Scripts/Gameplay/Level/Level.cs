@@ -25,9 +25,6 @@ namespace BattleChess.LevelStructure
             Variables.State = LevelState.OnInitialize;
             Variables.InformationOfBoard = levelManager.GetBoardInformation(Config.FormOfBoard);
 
-            Ref.AITeamController.Initialize(this);
-            Ref.UserTeamController.Initialize(this);
-
             SetState(LevelState.Prepare);
         }
 
@@ -45,8 +42,6 @@ namespace BattleChess.LevelStructure
                     break;
                 case LevelState.Prepare:
                     {
-                        Ref.UserTeamController.ProcessPrepareState();
-                        Ref.AITeamController.ProcessPrepareState();
                         break;
                     }
                 case LevelState.OnBattle:
@@ -57,7 +52,7 @@ namespace BattleChess.LevelStructure
             {
                 var champ = GameManager.Instance.PoolManager.GetPooledObject<Champion>(ObjectPooling.PooledObjectId.Champion);
                 champ.SetIdentity(ChampionIdentity.GetRandomChampionId());
-                Ref.UserTeamController.AddChampion(champ);
+                champ.SetTeam(TeamId.User);
             }
         }
 
@@ -69,10 +64,6 @@ namespace BattleChess.LevelStructure
         public virtual void DeInitialize()
         {
             Variables.State = LevelState.OnDeInitialize;
-
-            Ref.AITeamController.Initialize(this);
-            Ref.UserTeamController.Initialize(this);
-
             Destroy(gameObject);
         }
     }

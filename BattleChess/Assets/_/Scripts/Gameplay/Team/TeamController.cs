@@ -10,15 +10,11 @@ namespace BattleChess.Team
         public Level CurrentLevel { get; protected set; }
 
         [field: SerializeField]
-        public TeamId ID { get; protected set; }
-
-        protected Board board;
+        public TeamId Id { get; protected set; }
 
         public void Initialize(Level level)
         {
             CurrentLevel = level;
-            board = GetComponent<Board>();
-            board.Initialize(this);
         }
 
         public virtual void ProcessPrepareState()
@@ -28,12 +24,10 @@ namespace BattleChess.Team
 
         public virtual void DeInitialize()
         {
-            board.DeInitialize();
         }
 
         public void AddChampion(Champion champ)
         {
-            board.AddChampion(champ);
         }
     }
 }

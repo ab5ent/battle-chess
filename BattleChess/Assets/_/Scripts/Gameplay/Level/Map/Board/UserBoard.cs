@@ -10,11 +10,11 @@ namespace BattleChess.LevelStructure
 
         }
 
-        public override void Initialize(TeamController teamController)
+        /*public override void Initialize(TeamController teamController)
         {
             base.Initialize(teamController);
             SetStructure(controller.CurrentLevel.Variables.InformationOfBoard.UserBoardStructure);
             SetCells();
-        }
+        }*/
     }
 }

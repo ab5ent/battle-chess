@@ -8,8 +8,6 @@ namespace BattleChess.LevelStructure
     {
         private CellGenerator generator;
 
-        private bool isInitialized;
-
         private Vector2Int position;
 
         [SerializeField]
@@ -24,7 +22,7 @@ namespace BattleChess.LevelStructure
         public void Initialize(CellGenerator cellGenerator)
         {
             generator = cellGenerator;
-            isInitialized = false;
+            name = $"Cell_[unassigned]";
             position = new Vector2Int(int.MinValue, int.MinValue);
             SetActive(false);
         }
@@ -44,7 +42,6 @@ namespace BattleChess.LevelStructure
         public void Activate(int row, int column)
         {
             name = $"Cell_[{row}, {column}]";
-            isInitialized = true;
             SetPosition(row, column);
             ClearChampion();
             SetActive(true);
@@ -58,7 +55,7 @@ namespace BattleChess.LevelStructure
 
         public void Deactivate()
         {
-            isInitialized = false;
+            name = $"Cell_[unassigned]";
             SetPosition(int.MinValue, int.MinValue);
             ClearChampion();
             generator.Release(this);

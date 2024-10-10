@@ -17,11 +17,13 @@ namespace BattleChess.Managers
 
         public SharedDataManager SharedDataManager { get; private set; }
 
+        public TeamManager TeamManager { get; private set; }
+
         protected override void Awake()
         {
             base.Awake();
             GetManagers();
-            SetupManagers();
+            Initialize();
         }
 
         private void GetManagers()
@@ -31,15 +33,18 @@ namespace BattleChess.Managers
             InputManager = GetComponentInChildren<InputManager>();
             PoolManager = GetComponentInChildren<PoolManager>();
             SharedDataManager = GetComponentInChildren<SharedDataManager>();
+            TeamManager = GetComponentInChildren<TeamManager>();
         }
 
-        private void SetupManagers()
+        private void Initialize()
         {
             CameraManager.Initialize(this);
-            LevelManager.Initialize(this);
             InputManager.Initialize(this);
             PoolManager.Initialize(this);
             SharedDataManager.Initialize(this);
+
+            TeamManager.Initialize(this);
+            LevelManager.Initialize(this);
         }
 
         private void Update()

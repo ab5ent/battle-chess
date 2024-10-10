@@ -1,16 +1,10 @@
-using BattleChess.Entity;
-using BattleChess.Team;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEditor.FilePathAttribute;
 
 namespace BattleChess.LevelStructure
 {
     public abstract class Board : MonoBehaviour
     {
-        protected TeamController controller;
 
         protected BoardStructure structure;
 
@@ -19,11 +13,9 @@ namespace BattleChess.LevelStructure
         [SerializeField]
         protected List<Cell> cells;
 
-        public virtual void Initialize(TeamController teamController)
+        public virtual void Initialize()
         {
-            controller = teamController;
-            unityGrid = controller.CurrentLevel.Ref.UnityGrid;
-            cells = new List<Cell>();
+            //unityGrid = CurrentLevel.Ref.UnityGrid;
         }
 
         public void SetStructure(BoardStructure newStructure)
@@ -37,11 +29,11 @@ namespace BattleChess.LevelStructure
             {
                 for (int columnIndex = structure.StartColumnIndex; columnIndex <= structure.EndColumnIndex; columnIndex++)
                 {
-                    Cell cell = controller.CurrentLevel.GetCell();
+                   /* Cell cell = .CurrentLevel.GetCell();
                     cell.SetPositionAndRotation(unityGrid.CellToWorld(new Vector3Int(rowIndex, 0, columnIndex)), cell.transform.rotation);
                     cell.Activate(rowIndex, columnIndex);
 
-                    cells.Add(cell);
+                    cells.Add(cell);*/
                 }
             }
         }
@@ -82,37 +74,6 @@ namespace BattleChess.LevelStructure
             for (int i = 0; i < cells.Count; i++)
             {
                 cells[i].Deactivate();
-            }
-        }
-
-        public virtual void AddChampion(Champion champion, Vector2Int location)
-        {
-            champion.SetBoard(this);
-
-            for (int i = 0; i < cells.Count; i++)
-            {
-                if (cells[i].Position.x == location.x && cells[i].Position.y == location.y)
-                {
-                    cells[i].SetChampion(champion);
-                    Vector3 position = unityGrid.CellToWorld(new Vector3Int(cells[i].Position.x, 0, cells[i].Position.y));
-                    champion.SetPositionAndRotation(position, Quaternion.identity);
-                }
-            }
-        }
-
-        public virtual void AddChampion(Champion champion)
-        {
-            champion.SetBoard(this);
-
-            for (int i = 0; i < cells.Count; i++)
-            {
-                if (cells[i].CurrentChampion == null)
-                {
-                    cells[i].SetChampion(champion);
-                    champion.GetChampionComponent<ChampionBoardLocation>().SetCurrentCell(cells[i]);
-                    champion.GetChampionComponent<ChampionBoardLocation>().ReturnToCurrentCell();
-                    return;
-                }
             }
         }
 

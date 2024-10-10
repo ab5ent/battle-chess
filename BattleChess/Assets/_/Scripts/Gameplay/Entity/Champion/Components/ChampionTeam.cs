@@ -1,13 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using BattleChess.Managers;
+using BattleChess.Team;
 
 namespace BattleChess.Entity
 {
     public class ChampionTeam : ChampionComponent
     {
-        [field: SerializeField]
-        public Team team { get; private set; }
+        private TeamController teamController;
 
+        public void AssignToTeam(TeamId id)
+        {
+            teamController = GameManager.Instance.TeamManager.GetTeamController(id);
+            champion.SetParent(teamController.transform);
+        }
     }
 }
