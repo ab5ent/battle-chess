@@ -1,17 +1,13 @@
 using BattleChess.Team;
-using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace BattleChess.Managers
 {
-    public class TeamManager : MonoBehaviour
+    public class TeamManager : BaseManager
     {
-        private GameManager manager;
-
         private Dictionary<TeamId, TeamController> teamControllers;
 
-        public void Initialize(GameManager gameManager)
+        public override void Initialize(GameManager gameManager)
         {
             manager = gameManager;
 

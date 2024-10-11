@@ -6,23 +6,23 @@ namespace BattleChess.Entity
 {
     public class ChampionBoardLocation : ChampionComponent
     {
-        private Board board;
+        //private Board board;
 
         private Cell currentCell, selectedCell;
 
-        public void SetBoard(Board newBoard)
-        {
-            board = newBoard;
-        }
+        /* public void SetBoard(Board newBoard)
+         {
+             //board = newBoard;
+         }*/
 
         public void SetTemporaryOnBoard(Vector3 position)
         {
-            Cell cell = board.GetCell(position);
-            if (cell)
-            {
-                SwapSelectedCell(cell);
-                SetPosition(cell.Position, Vector3.up * 1.5f);
-            }
+            //Cell cell = board.GetCell(position);
+            /*   if (cell)
+               {
+                   SwapSelectedCell(cell);
+                   SetPosition(cell.Position, Vector3.up * 1.5f);
+               }*/
         }
 
         public void ReturnToCurrentCell()
@@ -78,7 +78,7 @@ namespace BattleChess.Entity
 
         public void SetPosition(Vector2Int intPosition, Vector3 offset)
         {
-            Vector3 onBoardPosition = board.GetWorldPosition(new Vector3Int(intPosition.x, 0, intPosition.y));
+            Vector3 onBoardPosition = /*board.GetWorldPosition(new Vector3Int(intPosition.x, 0, intPosition.y)); */ Vector3.zero;
             champion.SetLocalPositionAndRotation(onBoardPosition + offset, Quaternion.identity);
         }
     }

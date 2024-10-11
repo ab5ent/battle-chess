@@ -9,7 +9,7 @@ namespace BattleChess.Entity
 
         public void AssignToTeam(TeamId id)
         {
-            teamController = GameManager.Instance.TeamManager.GetTeamController(id);
+            teamController = GameManager.GetManager<TeamManager>().GetTeamController(id);
             champion.SetParent(teamController.transform);
         }
     }

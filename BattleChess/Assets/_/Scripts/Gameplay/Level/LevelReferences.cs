@@ -1,3 +1,4 @@
+using BattleChess.AreaStructure;
 using System;
 using UnityEngine;
 
@@ -7,6 +8,6 @@ namespace BattleChess.LevelStructure
     public class LevelReferences
     {
         [field: SerializeField]
-        public Grid UnityGrid { get; private set; }
+        public Area[] Areas { get; private set; }
     }
 }

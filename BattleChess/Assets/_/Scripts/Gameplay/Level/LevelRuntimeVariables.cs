@@ -1,3 +1,4 @@
+using BattleChess.AreaStructure;
 using System;
 using UnityEngine;
 
@@ -10,6 +11,6 @@ namespace BattleChess.LevelStructure
         public LevelState State { get; set; }
 
         [field: SerializeField]
-        public BoardInformation InformationOfBoard { get; set; }
+        public Area CurrentArea { get; set; }
     }
 }

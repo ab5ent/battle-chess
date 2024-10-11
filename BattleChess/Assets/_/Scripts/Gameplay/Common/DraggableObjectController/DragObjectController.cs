@@ -1,10 +1,5 @@
-using BattleChess.Common;
 using BattleChess.LevelStructure;
 using BattleChess.Managers;
-using System;
-using System.Collections.Generic;
-using Unity.PlasticSCM.Editor.WebApi;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace BattleChess.Common
@@ -23,8 +18,6 @@ namespace BattleChess.Common
         private Vector3 hittedPoint;
 
         private Vector3Int selectedGridPosition;
-
-        private bool draw;
 
         private DragObjectControllerState currentState;
 
@@ -85,17 +78,16 @@ namespace BattleChess.Common
 
             if (IsInvalidVector3(position))
             {
-                draw = false;
                 selectedGridPosition = Vector3Int.zero;
                 return;
             }
 
             Vector3Int rawGridPosition = IntegrateToGridPosition(hittedPoint);
 
-            BoardStructure structure = manager.CurrentLevel.Variables.InformationOfBoard.UserBoardStructure;
+            //BoardStructure structure = manager.CurrentLevel.Variables.InformationOfBoard.UserBoardStructure;
 
-            bool insideColumn = rawGridPosition.x >= structure.StartColumnIndex && rawGridPosition.x <= structure.EndColumnIndex;
-            bool insideRow = rawGridPosition.z >= structure.StartRowIndex && rawGridPosition.z <= structure.EndRowIndex;
+            //bool insideColumn = rawGridPosition.x >= structure.StartColumnIndex && rawGridPosition.x <= structure.EndColumnIndex;
+            //bool insideRow = rawGridPosition.z >= structure.StartRowIndex && rawGridPosition.z <= structure.EndRowIndex;
 
             //draw = insideColumn && insideRow;
             //selectedGridPosition = draw ? rawGridPosition : Vector3Int.zero;
@@ -103,7 +95,8 @@ namespace BattleChess.Common
 
         private Vector3Int IntegrateToGridPosition(Vector3 position)
         {
-            return manager.CurrentLevel.Ref.UnityGrid.WorldToCell(position);
+            return Vector3Int.zero;
+            //return manager.CurrentLevel.Ref.UnityGrid.WorldToCell(position);
         }
 
         #endregion

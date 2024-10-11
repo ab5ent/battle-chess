@@ -1,50 +1,38 @@
 using ab5entSDK.Common;
+using BattleChess.Entity;
 using BattleChess.Mathematics;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace BattleChess.Managers
 {
     public class GameManager : SingletonMonoBehaviour<GameManager>
     {
-        public CameraManager CameraManager { get; private set; }
-
-        public InputManager InputManager { get; private set; }
-
-        public LevelManager LevelManager { get; private set; }
-
-        public PoolManager PoolManager { get; private set; }
-
-        public SharedDataManager SharedDataManager { get; private set; }
-
-        public TeamManager TeamManager { get; private set; }
+        private Dictionary<Type, BaseManager> managersDictionary;
 
         protected override void Awake()
         {
             base.Awake();
-            GetManagers();
             Initialize();
-        }
-
-        private void GetManagers()
-        {
-            CameraManager = GetComponentInChildren<CameraManager>();
-            LevelManager = GetComponentInChildren<LevelManager>();
-            InputManager = GetComponentInChildren<InputManager>();
-            PoolManager = GetComponentInChildren<PoolManager>();
-            SharedDataManager = GetComponentInChildren<SharedDataManager>();
-            TeamManager = GetComponentInChildren<TeamManager>();
         }
 
         private void Initialize()
         {
-            CameraManager.Initialize(this);
-            InputManager.Initialize(this);
-            PoolManager.Initialize(this);
-            SharedDataManager.Initialize(this);
+            managersDictionary = new Dictionary<Type, BaseManager>();
 
-            TeamManager.Initialize(this);
-            LevelManager.Initialize(this);
+            BaseManager[] baseManagers = GetComponentsInChildren<BaseManager>();
+
+            for (int i = 0; i < baseManagers.Length; i++)
+            {
+                managersDictionary.Add(baseManagers[i].GetType(), baseManagers[i]);
+            }
+
+            for (int i = 0; i < managersDictionary.Count; i++)
+            {
+                baseManagers[i].Initialize(this);
+            }
         }
 
         private void Update()
@@ -53,11 +41,28 @@ namespace BattleChess.Managers
             {
                 StartGame();
             }
+
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                var champ = GameManager.GetManager<PoolManager>().GetPooledObject<Champion>(ObjectPooling.PooledObjectId.Champion);
+                champ.SetIdentity(ChampionIdentity.GetRandomChampionId());
+                champ.SetTeam(TeamId.User);
+                champ.transform.SetPositionAndRotation(GameManager.GetManager<BoardManager>().GetPositionOnGrid(Vector3Int.zero), Quaternion.identity);
+            }
         }
 
         private void StartGame()
         {
-            LevelManager.LoadLevel(LevelType.Campaign, 0);
+            GetManager<LevelManager>().LoadLevel(LevelType.Campaign, 0);
+        }
+
+        public static T GetManager<T>() where T : BaseManager
+        {
+            if (Instance.managersDictionary.TryGetValue(typeof(T), out BaseManager component))
+            {
+                return component as T;
+            }
+            return null;
         }
 
         #region Pause/Resume

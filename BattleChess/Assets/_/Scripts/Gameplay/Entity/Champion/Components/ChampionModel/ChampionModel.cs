@@ -36,7 +36,7 @@ namespace BattleChess.Entity
             ChampionSkinInfo championSkinInfo = GetChampionComponent<ChampionSkins>().GetChampionSkinInfo(id);
             currentSkinnedMeshRenderer = championSkinInfo.Skin;
             currentSkinnedMeshRenderer.material = clonedMaterial;
-            clonedMaterial.SetTexture(MainTextureKey, GameManager.Instance.SharedDataManager.GetChampionTexture(id));
+            clonedMaterial.SetTexture(MainTextureKey, GameManager.GetManager<SharedDataManager>().GetChampionTexture(id));
             Activate();
         }
     }

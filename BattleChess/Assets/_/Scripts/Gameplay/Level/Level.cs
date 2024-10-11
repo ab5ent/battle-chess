@@ -1,16 +1,12 @@
-using BattleChess.Team;
 using BattleChess.Managers;
+using Unity.VisualScripting;
 using UnityEngine;
-using BattleChess.Entity;
 
 namespace BattleChess.LevelStructure
 {
     public class Level : MonoBehaviour
     {
         protected LevelManager manager;
-
-        [field: SerializeField]
-        public LevelConfigures Config { get; private set; }
 
         [field: SerializeField]
         public LevelReferences Ref { get; private set; }
@@ -21,10 +17,13 @@ namespace BattleChess.LevelStructure
         public void Initialize(LevelManager levelManager)
         {
             manager = levelManager;
+            SetState(LevelState.OnInitialize);
+        }
 
-            Variables.State = LevelState.OnInitialize;
-            Variables.InformationOfBoard = levelManager.GetBoardInformation(Config.FormOfBoard);
-
+        public void Begin()
+        {
+            Variables.CurrentArea = Ref.Areas[0];
+            Variables.CurrentArea.Initialize();
             SetState(LevelState.Prepare);
         }
 
@@ -39,26 +38,18 @@ namespace BattleChess.LevelStructure
             switch (Variables.State)
             {
                 case LevelState.None:
-                    break;
+                    {
+                        break;
+                    }
                 case LevelState.Prepare:
                     {
                         break;
                     }
                 case LevelState.OnBattle:
-                    break;
+                    {
+                        break;
+                    }
             }
-
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                var champ = GameManager.Instance.PoolManager.GetPooledObject<Champion>(ObjectPooling.PooledObjectId.Champion);
-                champ.SetIdentity(ChampionIdentity.GetRandomChampionId());
-                champ.SetTeam(TeamId.User);
-            }
-        }
-
-        public Cell GetCell()
-        {
-            return manager.GetCell();
         }
 
         public virtual void DeInitialize()

@@ -1,4 +1,3 @@
-using BattleChess.LevelStructure;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -69,11 +68,6 @@ namespace BattleChess.Entity
         public void SetIdentity(ChampionId id)
         {
             GetChampionComponent<ChampionIdentity>().SetChampionIdentity(id);
-        }
-
-        public void SetBoard(Board board)
-        {
-            GetChampionComponent<ChampionBoardLocation>().SetBoard(board);
         }
 
         public void SetTeam(TeamId teamId)

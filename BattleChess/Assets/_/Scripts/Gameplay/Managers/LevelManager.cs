@@ -11,9 +11,6 @@ namespace BattleChess.Managers
         public Level CurrentLevel { get; private set; }
 
         [SerializeField]
-        private BoardData boardData;
-
-        [SerializeField]
         private CellGenerator cellGenerator;
 
         [SerializeField]
@@ -32,11 +29,6 @@ namespace BattleChess.Managers
             Level levelPrefab = Resources.Load<Level>($"Levels/{levelType}/Level_{levelType}_{levelId}");
             CurrentLevel = Instantiate(levelPrefab, transform);
             CurrentLevel.Initialize(this);
-        }
-
-        public BoardInformation GetBoardInformation(BoardForm form)
-        {
-            return boardData.GetBoardInformation(form);
         }
 
         public Cell GetCell()
