@@ -1,39 +1,53 @@
 using BattleChess.AreaStructure;
-using BattleChess.LevelStructure;
+using BattleChess.Common.Hex;
 using UnityEngine;
 
 namespace BattleChess.Managers
 {
     public class BoardManager : BaseManager
     {
-        [field: SerializeField]
-        public Grid GridMap { get; private set; }
+        [SerializeField]
+        private Hex hexPrefab;
 
         public void AssignGridMapToArea(Area area)
         {
-            GridMap.transform.SetParent(area.transform);
+            /*GridMap.transform.SetParent(area.transform);
             GridMap.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-            GridMap.gameObject.SetActive(true);
+            GridMap.gameObject.SetActive(true);*/
         }
 
         public void ReturnGridMap()
         {
-            GridMap.transform.SetParent(transform);
+            /*GridMap.transform.SetParent(transform);
             GridMap.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-            GridMap.gameObject.SetActive(false);
+            GridMap.gameObject.SetActive(false);*/
         }
-
-        [ContextMenu("Test")]
-        public void Test()
-        {
-            AssignGridMapToArea(selectArea);
-        }
-
-        public Area selectArea;
 
         public Vector3 GetPositionOnGrid(Vector3Int location)
         {
-            return GridMap.CellToWorld(location);
+            return Vector3.zero;
+        }
+
+        public override void Initialize(GameManager gameManager)
+        {
+            base.Initialize(gameManager);
+
+            int totalRows = 4;
+
+            for (int rIndex = 0; rIndex < totalRows; rIndex++)
+            {
+                int totalColumns = rIndex % 2 == 0 ? 4 : 5;
+                string x = "";
+
+                for (int cIndex = 0; cIndex < totalColumns; cIndex++)
+                {
+                    x += $"({rIndex}, {cIndex})";
+                    Hex hex = Instantiate<Hex>(hexPrefab, transform);
+                    hex.transform.position = new Vector3(rIndex, 0, cIndex);
+
+                }
+                Debug.Log(x);
+            }
         }
     }
 }

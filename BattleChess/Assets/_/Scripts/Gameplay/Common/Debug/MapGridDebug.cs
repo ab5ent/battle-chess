@@ -19,9 +19,9 @@ namespace BattleChess.Gameplay.Common
                 return;
             }
 
-            for (int i = -5; i < 5; i++)
+            for (int i = -2; i <= 2; i++)
             {
-                for (int j = -5; j < 5; j++)
+                for (int j = -2; j <= 2; j++)
                 {
                     Gizmos.DrawWireCube(new Vector3Int(i, 0, j), Vector3.one);
                 }

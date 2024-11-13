@@ -34,6 +34,9 @@ namespace BattleChess.Common.Hex
         [SerializeField]
         private bool isFlatTopped;
 
+        [SerializeField]
+        private bool is3DObject;
+
         private void Awake()
         {
             meshRenderer = GetComponent<MeshRenderer>();
@@ -62,8 +65,11 @@ namespace BattleChess.Common.Hex
 
         private void DrawMesh()
         {
-            DrawFaces();
-            CombineFaces();
+            if (mesh)
+            {
+                DrawFaces();
+                CombineFaces();
+            }
         }
 
         private void DrawFaces()
@@ -74,6 +80,27 @@ namespace BattleChess.Common.Hex
             for (int point = 0; point < 6; point++)
             {
                 faces.Add(CreateFace(innerSize, outerSize, height / 2, height / 2, point));
+            }
+
+            if (is3DObject)
+            {
+                // Bottom face
+                for (int point = 0; point < 6; point++)
+                {
+                    faces.Add(CreateFace(innerSize, outerSize, -height / 2, -height / 2, point, true));
+                }
+
+                // Outer face
+                for (int point = 0; point < 6; point++)
+                {
+                    faces.Add(CreateFace(outerSize, outerSize, height / 2, -height / 2, point, true));
+                }
+
+                // Inner face
+                for (int point = 0; point < 6; point++)
+                {
+                    faces.Add(CreateFace(innerSize, innerSize, height / 2, -height / 2, point, false));
+                }
             }
         }
 

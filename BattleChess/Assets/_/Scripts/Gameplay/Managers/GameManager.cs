@@ -37,18 +37,6 @@ namespace BattleChess.Managers
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                StartGame();
-            }
-
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                var champ = GameManager.GetManager<PoolManager>().GetPooledObject<Champion>(ObjectPooling.PooledObjectId.Champion);
-                champ.SetIdentity(ChampionIdentity.GetRandomChampionId());
-                champ.SetTeam(TeamId.User);
-                champ.transform.SetPositionAndRotation(GameManager.GetManager<BoardManager>().GetPositionOnGrid(Vector3Int.zero), Quaternion.identity);
-            }
         }
 
         private void StartGame()
